@@ -31,7 +31,7 @@
 | category_id         | integer    | null: false                   |
 | condition_id        | integer    | null: false                   |
 | delivery_expense_id | integer    | null: false                   |
-| ship_form_area_id   | integer    | null: false                   |
+| prefectures_id      | integer    | null: false                   |
 | fixed_date_id       | integer    | null: false                   |
 
 #### Association
@@ -48,6 +48,7 @@
 
 ##### Association
 
+- belongs_to : user
 - belongs_to : item
 - has_one : address
 
