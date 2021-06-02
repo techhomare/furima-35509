@@ -34,43 +34,43 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it 'priceが空では出品できない' do
+      it 'priceが---では出品できない' do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'category_idが空では出品できない' do
-        @item.category_id = '---'
+      it 'category_idが---では出品できない' do
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category is not a number')
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
-      it 'condition_idが空では出品できない' do
-        @item.condition_id = '---'
+      it 'condition_idが---では出品できない' do
+        @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Condition is not a number')
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
-      it 'delivery_expense_idが空では出品できない' do
-        @item.delivery_expense_id = '---'
+      it 'delivery_expense_idが---では出品できない' do
+        @item.delivery_expense_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery expense is not a number')
+        expect(@item.errors.full_messages).to include('Delivery expense must be other than 1')
       end
-      it 'prefectures_idが空では出品できない' do
-        @item.prefectures_id = '---'
+      it 'prefectures_idが---では出品できない' do
+        @item.prefectures_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefectures is not a number')
+        expect(@item.errors.full_messages).to include('Prefectures must be other than 1')
       end
-      it 'fixed_date_idが空では出品できない' do
-        @item.fixed_date_id = '---'
+      it 'fixed_date_idが---では出品できない' do
+        @item.fixed_date_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Fixed date is not a number')
+        expect(@item.errors.full_messages).to include('Fixed date must be other than 1')
       end
       it 'priceが300以下の値では出品できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが9999999以上の値では出品できない' do
-        @item.price = '100000000'
+        @item.price = 100000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
