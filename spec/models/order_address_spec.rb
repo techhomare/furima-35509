@@ -68,6 +68,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number  is invalid. Input only number")
       end
+      it 'phone_numberは12桁以上の数値では購入できない' do
+        @order_address.phone_number = '111111111111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number  is invalid. Input only number")
+      end
       it 'phone_numberは半角英字では購入できない' do
         @order_address.phone_number = 'aaaaaaaaaaa'
         @order_address.valid?
@@ -93,11 +98,15 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number  is invalid. Input only number")
       end
-      it 'user_idとitem_idは空では購入できない' do
+      it 'user_idは空では購入できない' do
         @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idは空では購入できない' do
         @order_address.item_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("User can't be blank", "Item can't be blank")
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

@@ -25,11 +25,11 @@ class OrdersController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:item_id]
+    @item = Item.find(params[:item_id])
   end
 
   def move_to_root_path
-    if @item.order != nil
+    if @item.order != nil || current_user.id == @item.user.id
       redirect_to root_path 
     end
   end
@@ -40,6 +40,6 @@ class OrdersController < ApplicationController
       amount: @item.price, 
       card: order_params[:token],   
       currency: 'jpy'                 
-      )
+    )
   end
 end
